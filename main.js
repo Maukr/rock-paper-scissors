@@ -5,18 +5,16 @@ function computerPlay(){
 
 function playRound(playerSelection, computerSelection){
     
-    let playerValue = playerSelection.toLowerCase();
-    
-    if(playerValue === computerSelection){
+    if(playerSelection === computerSelection){
         return 0;
     }
 
-    if(playerValue === 'rock'){
+    if(playerSelection === 'rock'){
         if(computerSelection === 'paper') return 1;
         if(computerSelection === 'scissors') return 2;
     }
 
-    if(playerValue === 'paper'){
+    if(playerSelection === 'paper'){
         if(computerSelection === 'scissors') return 1;
         if(computerSelection === 'rock') return 2;
     }
@@ -29,11 +27,14 @@ function game(){
 
     let playerScore = 0;
     let computerScore = 0;
-    let rondas = 5;
 
-    while(rondas > 0){
+    while(playerScore < 3 && computerScore < 3){
+        let playerSelection;
+        do{
+            console.log('Elije rock, paper, or scissors');
+            playerSelection = (prompt('Rock, paper, scissors')).toLowerCase();
+        }while(playerSelection !== 'rock' && playerSelection !== 'paper' && playerSelection !== 'scissors');
         
-        let playerSelection = prompt('Rock, paper, scissors');
         let computerSelection = computerPlay();
         let result = playRound(playerSelection, computerSelection);
 
@@ -41,14 +42,14 @@ function game(){
         if(result === 1){
             console.log('La computadora gana la ronda');
             computerScore++;
-            rondas--;
         }else if(result === 2){
             console.log('El jugador gana la ronda');
             playerScore++;
-            rondas--;
         }else{
             console.log('Empate, se repite la ronda');
         }
+        console.log(playerScore, computerScore);
+        
     }
 
     if(playerScore > computerScore){
