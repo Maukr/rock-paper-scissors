@@ -23,17 +23,27 @@ function playRound(playerSelection, computerSelection){
     if(computerSelection === 'paper') return 2;
 }
 
-function game(){
+function startGame(){
 
+    const btns = Array.from(document.querySelectorAll('.btn'));
+
+    btns.forEach(btn => {
+        btn.classList.add('btn-hover');
+        btn.disabled = false; 
+    });
+ /*
     let playerScore = 0;
     let computerScore = 0;
 
     while(playerScore < 3 && computerScore < 3){
+
+
         let playerSelection;
         do{
             console.log('Elije rock, paper, or scissors');
             playerSelection = (prompt('Rock, paper, scissors')).toLowerCase();
         }while(playerSelection !== 'rock' && playerSelection !== 'paper' && playerSelection !== 'scissors');
+        
         
         let computerSelection = computerPlay();
         let result = playRound(playerSelection, computerSelection);
@@ -48,8 +58,7 @@ function game(){
         }else{
             console.log('Empate, se repite la ronda');
         }
-        console.log(playerScore, computerScore);
-        
+        console.log(playerScore, computerScore); 
     }
 
     if(playerScore > computerScore){
@@ -57,6 +66,21 @@ function game(){
     }else{
         console.log('Gana PC');
     }
-
+*/
 }
-game();
+
+//game();
+
+const btnPlay = document.querySelector('#btn-play');
+btnPlay.addEventListener('click', e => {
+    startGame();
+})
+
+const btns = Array.from(document.querySelectorAll('.btn'));
+
+btns.forEach(btn => {
+    btn.disabled = true;
+    btn.addEventListener('click', e => {
+        console.log(e.target.id);
+    }) 
+});
